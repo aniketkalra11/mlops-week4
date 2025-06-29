@@ -41,7 +41,7 @@ jobs:
           cat test_output.txt >> report.md
           echo '```' >> report.md
 
-          echo "## 📊 Training Metrics" >> report.md
+          echo "## Training Metrics" >> report.md
           cat metrics.csv >> report.md
 
           cml comment create report.md
