@@ -30,4 +30,17 @@ jobs:
 
       # Run pytest
       - name: Run pytest
-        run: pytest tests.py --doctest-modules --junitxml=junit/test-results.xml
+        run: |
+          python -m test 2>&1 > test_output.txt
+      
+      - name: Create CML report
+        env:
+            REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            echo "test output" > report.md
+            echo "\`\`\`" >> report.md
+            cat test_output.txt >> report.md
+            echo "\`\`\`" > report.md
+            echo "metrics from training" >> report.md
+            cat metrics.csv >> report.md
+            cml comment create --publish report.md
