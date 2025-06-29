@@ -33,6 +33,9 @@ jobs:
         run: |
           python -m test 2>&1 > test_output.txt
       
+      - name: Install CML
+        run: npm install -g @dvcorg/cml
+
       - name: Create CML report
         env:
             REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
