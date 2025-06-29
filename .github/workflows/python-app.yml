@@ -27,14 +27,14 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest > test_output.txt 2>&1
+          python -m test 2>&1 > test_output.txt
 
       - name: Install CML
         run: npm install -g @dvcorg/cml
 
       - name: Create CML report
         env:
-          REPO_TOKEN: ${{ secrets.CML_PAT}}
+          REPO_TOKEN: ${{ secrets.CML_PAT }}
         run: |
           echo "## ✅ Test Results" > report.md
           echo '```' >> report.md
